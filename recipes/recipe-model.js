@@ -5,43 +5,47 @@ module.exports = {
     add,
     find,
     findById,
+    getByUserId,
     remove,
     update
 }
 
 
- function add(recipes){
-    return db("recipes")
+function add(recipes) {
+  return userDB("recipes")
     .insert(recipes)
- } 
+}
 
-
-function find(id){
+function getByUserId(id) {
     return userDB("recipes")
     .join("users", "recipes.user_id", "users.id")
-    .where("recipes.user_id", id)
+    .select("recipes.title", "recipes.source", "recipes.ingredients", "recipes.instructions", "recipes.category")
+   .where("recipes.user_id", id)
+   }
+
+
+function find(){
+    return userDB("recipes")
 }
 
-function remove(id){
+function remove(id) {
     return userDB("recipes")
-    .where({id})
-    .del()
-}
+      .where({ id })
+      .del();
+  }
 
 function update(id, changes){
     return userDB('recipes')
     .where({id})
     .update(changes)
-    .then(() => {
-        return findById(id);
-      });
 }
 
 
 function findById(id){
     return userDB("recipes")
     .where({ id })
-    .first()
 }
+
+
 
 
