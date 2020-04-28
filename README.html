@@ -40,4 +40,22 @@ Authentication
           "instructions": "grab pineapple shove in ear place head in blender hope you survive",
           "category": "delicacies from your own head"
         }
+
+     PUT REQUEST
+     -https://secretfamilyrecipes1.herokuapp.com/api/recipes/"id of recipe you are editing"
+     - to update a recipe that you have created you can make a put request to this endpoint
+     - in the actualy put request you have to provide the id of the recipe that you are trying to edit not the user id
+     - you should be sending an object that looks like this. REMEMBER the recipe id needs to be passed into the endpoint. 
+        {
+        "title": "Coca Cola",
+        "source": "whatever",
+        "ingredients": "butter",
+        "instructions": "bake it",
+        "category": "drink"
+        }
+      DELETE REQUEST
+        -https://secretfamilyrecipes1.herokuapp.com/api/recipes/"id of recipe you are editing
+        - To delete a recipe on the logged in user you must hit this endpoint with a delete request
+        - The id of the recipe you are going to delete needs to be added to the endpoint url same as the 
+          update request. 
   
