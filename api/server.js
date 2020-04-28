@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const authenticate = require('../auth/authenticate-middleware.js');
 const authRouter = require('../auth/auth-router.js');
 const recipeRouter = require('../recipes/recipe-router.js')
+const publicRouter = require("../publicrecipes/public-router")
 
 
 const server = express();
@@ -17,6 +18,7 @@ server.use(express.json());
 
 server.use('/api/recipes', authenticate, recipeRouter)
 server.use('/api/auth', authRouter);
+server.use('/api/public', publicRouter)
 
 
 server.get("/", (req,res) => {
