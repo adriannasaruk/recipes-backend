@@ -19,7 +19,7 @@ router.post("/register", (req, res) => {
   usersDB
   .add(userInfo)
   .then(users => {
-    res.status(201).json(users)
+    res.status(201).json({message: "You are registered!", users})
   })
   .catch(error => {
     res.status(401).json({erroeMessage: `${error}: Something went wrong with your resgistration`})
@@ -38,7 +38,7 @@ router.post("/login", (req, res) => {
       const token = generateToken(user)
 
       res.status(200).json({
-        message: `welcome ${user.username}.`,
+        message: "Welcome!",
         token,
       })
     } else {
