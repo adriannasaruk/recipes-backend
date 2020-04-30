@@ -48,6 +48,10 @@ router.post("/login", (req, res) => {
 
 });
 
+router.get('/logout', function(req, res) {
+  res.status(200).send({ auth: false, token: null });
+});
+
 function generateToken(user){
   const payload = {
     subject: user.id,
