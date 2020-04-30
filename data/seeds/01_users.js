@@ -11,5 +11,5 @@ exports.seed = function(knex) {
           username: 'username', 
           password: hash
         })
-       });
+    });
 };
