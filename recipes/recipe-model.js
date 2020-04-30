@@ -19,13 +19,14 @@ function add(recipes) {
 function getByUserId(id) {
     return userDB("recipes")
     .join("users", "recipes.user_id", "users.id")
-    .select("recipes.title", "recipes.source", "recipes.ingredients", "recipes.instructions", "recipes.category")
+    .select("recipes.title", "recipes.source", "recipes.ingredients", "recipes.instructions", "recipes.category", "recipes.id")
    .where("recipes.user_id", id)
    }
 
 
 function find(){
     return userDB("recipes")
+        .select("recipes.title",  "recipes.source", "recipes.ingredients", "recipes.instructions", "recipes.category", "recipes.id")
 }
 
 function remove(id) {
