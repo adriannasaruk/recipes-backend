@@ -8,15 +8,11 @@ const { jwtSecret } = require("./secrets");
 
 
 router.post("/register", (req, res) => {
-
-  let userInfo = req.body;
-
-  const ROUNDS = process.env.HASHING_ROUNDS || 8
-  const hash = bcrypt.hashSync(userInfo.password, ROUNDS);
-
-  userInfo.password = hash;
-
-  usersDB
+let userInfo = req.body;
+const ROUNDS = process.env.HASHING_ROUNDS || 8
+const hash = bcrypt.hashSync(userInfo.password, ROUNDS);
+userInfo.password = hash;
+usersDB
   .add(userInfo)
   .then(users => {
     res.status(201).json({message: "You are registered!", users})
@@ -38,8 +34,9 @@ router.post("/login", (req, res) => {
       const token = generateToken(user)
 
       res.status(200).json({
-        message: "Welcome!",
-        token,
+        message: `Welcome back ${user.username}`,
+        id: user.id,
+        token
       })
     } else {
       res.status(401).json({message: "invaild credentials"})
